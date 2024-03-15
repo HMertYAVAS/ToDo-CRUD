@@ -3,6 +3,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import userRoutes from './src/routes/user.route.js'
 import authRoutes from './src/routes/auth.route.js'
+import todoRoutes from './src/routes/todo.route.js'
+import cookieParser from 'cookie-parser';
 
 
 
@@ -23,8 +25,12 @@ mongoose
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use('/api/user',userRoutes);
-app.use('/api/auth',authRoutes);
+app.use(cookieParser());
+
+
+app.use('/api/user',userRoutes)
+app.use('/api/auth',authRoutes)
+app.use('/api/todo',todoRoutes)
 
 
 app.listen(port, () => {
