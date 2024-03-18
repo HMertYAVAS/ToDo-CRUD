@@ -47,10 +47,14 @@ export default function Header() {
                 <BsList size={'1.8em'} />
               }
             >
+              {
+                currentUser &&
+
               <Dropdown.Header>
                 <span className="block text-sm">Bonnie Green</span>
                 {/* <span className="block truncate text-sm font-medium">name@flowbite.com</span> */}
               </Dropdown.Header>
+              }
               {currentUser &&
               <>
               <Dropdown.Item onClick={() => navigate('/todo')}>Todo</Dropdown.Item>
@@ -60,7 +64,12 @@ export default function Header() {
               {/* <Dropdown.Item>Dashboard</Dropdown.Item>
               <Dropdown.Item>Earnings</Dropdown.Item>
               <Dropdown.Divider /> */}
-              <Dropdown.Item onClick={handleLogout} >Sign out</Dropdown.Item>
+              {
+                currentUser ?
+                <Dropdown.Item onClick={handleLogout} >Sign out</Dropdown.Item>
+                :
+                <Dropdown.Item onClick={()=>navigate("/sign-in")} >Sign In</Dropdown.Item>
+              }
             </Dropdown>
         </div>
         {/* <Navbar.Collapse>
